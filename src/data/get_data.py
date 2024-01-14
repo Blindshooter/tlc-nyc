@@ -21,6 +21,8 @@ logging.basicConfig(
     level=logging.INFO,
     datefmt='%Y-%m-%d %H:%M:%S')
 
+# the script will load the data from https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
+
 TLC_URL = 'https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page'
 DATA_DIR = 'data/raw'
 START_YEAR = 2022
