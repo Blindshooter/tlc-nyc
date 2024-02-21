@@ -31,7 +31,7 @@ def get_ts_data_fhvhv(df):
     df = df.groupby(['pickup_date', 'PULocationID'])['hvfhs_license_num'].count().reset_index()
 
     # rename column 'hvfhs_license_num' to 'count'
-    df.rename(columns={'hvfhs_license_num':'count'}, inplace=True)
+    df.rename(columns={'hvfhs_license_num': 'count'}, inplace=True)
 
     return df
 
@@ -78,6 +78,8 @@ def main(input_filepath, output_filepath):
     result.columns = ['PULocationID', 'pickup_date', 'count']
 
     result.to_parquet(output_filepath/'fhvhv_ts_forecast.parquet')
+
+    logger.info(f'Saved file: {output_filepath}/fhvhv_ts_forecast.parquet')
 
     result_with_na = res.set_index('pickup_date').groupby('PULocationID')['count'].apply(lambda x: x.reindex(date_range)).reset_index()
     result_with_na.columns = ['PULocationID', 'pickup_date', 'count']
